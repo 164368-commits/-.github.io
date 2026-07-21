@@ -1,1 +1,118 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>❤️ สำหรับคนพิเศษ ❤️</title>
 
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.card{
+    width:380px;
+    background:#fff;
+    border-radius:20px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+img{
+    width:100%;
+    height:420px;
+    object-fit:cover;
+    border-radius:15px;
+}
+
+h2{
+    margin:15px 0;
+    color:#ff3366;
+}
+
+button{
+    padding:12px 30px;
+    border:none;
+    border-radius:30px;
+    background:#ff3366;
+    color:#fff;
+    font-size:18px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#ff1744;
+}
+
+#text{
+    margin-top:20px;
+    display:none;
+    color:#e91e63;
+    font-size:22px;
+    font-weight:bold;
+}
+</style>
+
+</head>
+<body>
+
+<div class="card">
+
+<img id="slide" src="1.jpg">
+
+<h2>❤️ ถึงคนพิเศษ ❤️</h2>
+
+<button onclick="startLove()">กดตรงนี้ ❤️</button>
+
+<div id="text">
+รักเธอที่สุดเลยนะ ❤️<br>
+อยู่ด้วยกันไปนานๆนะ 🥰
+</div>
+
+<audio id="music">
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+</div>
+
+<script>
+
+const images=[
+"1.jpg",
+"2.jpg",
+"3.jpg",
+"4.jpg",
+"5.jpg"
+];
+
+let index=0;
+
+setInterval(function(){
+    index++;
+    if(index>=images.length){
+        index=0;
+    }
+    document.getElementById("slide").src=images[index];
+},3000);
+
+function startLove(){
+    document.getElementById("music").play();
+    document.getElementById("text").style.display="block";
+}
+
+</script>
+
+</body>
+</html>
