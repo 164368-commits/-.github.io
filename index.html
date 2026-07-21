@@ -14,54 +14,79 @@
 }
 
 body{
-    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+    background:linear-gradient(135deg,#ffb6d9,#ffd6e8,#fff0f5);
     display:flex;
     justify-content:center;
     align-items:center;
     height:100vh;
+    overflow:hidden;
 }
 
 .card{
-    width:380px;
+    width:400px;
     background:#fff;
-    border-radius:20px;
     padding:20px;
+    border-radius:25px;
     text-align:center;
-    box-shadow:0 10px 30px rgba(0,0,0,.2);
+    box-shadow:0 10px 30px rgba(255,105,180,.4);
 }
 
-img{
+#slide{
     width:100%;
-    height:420px;
+    height:450px;
     object-fit:cover;
-    border-radius:15px;
+    border-radius:20px;
+    border:4px solid hotpink;
+    transition:opacity .8s;
 }
 
 h2{
     margin:15px 0;
-    color:#ff3366;
+    color:#ff1493;
 }
 
 button{
-    padding:12px 30px;
+    background:#ff1493;
+    color:white;
     border:none;
+    padding:12px 35px;
     border-radius:30px;
-    background:#ff3366;
-    color:#fff;
     font-size:18px;
     cursor:pointer;
+    transition:.3s;
 }
 
 button:hover{
-    background:#ff1744;
+    background:#ff69b4;
+    transform:scale(1.05);
 }
 
 #text{
-    margin-top:20px;
     display:none;
-    color:#e91e63;
+    margin-top:20px;
+    color:#d81b60;
     font-size:22px;
     font-weight:bold;
+}
+
+/* หัวใจลอย */
+.heart{
+    position:fixed;
+    color:#ff4d88;
+    font-size:25px;
+    animation:float 6s linear infinite;
+    pointer-events:none;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(100vh);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-120px);
+        opacity:0;
+    }
 }
 </style>
 
@@ -75,43 +100,85 @@ button:hover{
 <h2>❤️ น้องรัด ❤️</h2>
 
 <button onclick="startLove()">
-    กดตรงนี้สิ ❤️
+💖 กดตรงนี้ 💖
 </button>
+
 <div id="text">
 รักที่สุดเลยนะ ❤️<br>
  🥰
 </div>
 
 <audio id="music">
-<source src="เพลงรัก Three Man Down Official MV.mp3" type="audio/mpeg">
+    <source src="เพลงรัก Three Man Down Official MV.mp3" type="audio/mpeg">
 </audio>
 
 </div>
 
 <script>
 
-const images=[
+// รูปภาพ 5 รูป
+const images = [
+"751035036_1719591268958655_8370233642973154637_n.jpg",
 "752550920_1018062320995628_3834456038027307601_n.jpg",
 "754015096_2926203654416033_1176873942568398260_n.jpg",
 "753105080_1500194058456130_231933915178450339_n.jpg",
-"751134574_1477406654429882_498575148599167075_n.jpg",
-"749419435_906666985822657_1804846366889359069_n.jpg"
+"751134574_1477406654429882_498575148599167075_n.jpg"
 ];
 
-let index=0;
+let index = 0;
 
-setInterval(function(){
-    index++;
-    if(index>=images.length){
-        index=0;
-    }
-    document.getElementById("slide").src=images[index];
+// เปลี่ยนรูปทุก 3 วินาที
+setInterval(() => {
+
+    const img = document.getElementById("slide");
+
+    img.style.opacity = 0;
+
+    setTimeout(() => {
+
+        index = (index + 1) % images.length;
+
+        img.src = images[index];
+
+        img.style.opacity = 1;
+
+    },400);
+
 },3000);
 
+// กดปุ่มเล่นเพลง
 function startLove(){
-    document.getElementById("music").play();
-    document.getElementById("text").style.display="block";
+
+    const music = document.getElementById("music");
+
+    music.play();
+
+    document.getElementById("text").style.display = "block";
+
 }
+
+// หัวใจลอย
+function createHeart(){
+
+    const heart = document.createElement("div");
+
+    heart.className = "heart";
+
+    heart.innerHTML = "❤️";
+
+    heart.style.left = Math.random()*100 + "vw";
+
+    heart.style.fontSize = (20 + Math.random()*20) + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },6000);
+
+}
+
+setInterval(createHeart,300);
 
 </script>
 
