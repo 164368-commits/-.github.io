@@ -30,9 +30,14 @@ document.getElementById("startBtn").onclick = function(){
     this.style.display = "none";
 
 
-    // แสดงเลขถอยหลัง
+    // แสดงเลข
     countdown.style.display = "block";
     countdown.innerHTML = count;
+
+
+    // เอฟเฟกต์เลขแรก
+    countdown.classList.add("countChange");
+
 
 
     let timer = setInterval(()=>{
@@ -43,7 +48,16 @@ document.getElementById("startBtn").onclick = function(){
 
         if(count > 0){
 
+
             countdown.innerHTML = count;
+
+
+            // รีเซ็ตเอฟเฟกต์ทุกครั้งที่เลขเปลี่ยน
+            countdown.classList.remove("countChange");
+            void countdown.offsetWidth;
+            countdown.classList.add("countChange");
+
+
 
         }else{
 
@@ -52,6 +66,12 @@ document.getElementById("startBtn").onclick = function(){
 
 
             countdown.innerHTML = "🎉";
+
+
+            countdown.classList.remove("countChange");
+            void countdown.offsetWidth;
+            countdown.classList.add("countChange");
+
 
 
             setTimeout(()=>{
