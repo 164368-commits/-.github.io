@@ -1,6 +1,14 @@
+<!-- เพลง -->
+<audio id="music" preload="auto" loop>
+    <source src="Happy Birthday To You - THE KIBOOMERS Birthday Party Song for Kids - The Kiboomers - Kids Music Channel (youtube).mp3" type="audio/mpeg">
+    เบราว์เซอร์ของคุณไม่รองรับการเล่นเพลง
+</audio>
+
+<!-- ไลบรารีพลุ -->
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
 <script>
+
 // =======================
 // รูปภาพ
 // =======================
@@ -23,15 +31,12 @@ setInterval(() => {
     setTimeout(() => {
 
         index = (index + 1) % images.length;
-
         slide.src = images[index];
-
         slide.style.opacity = 1;
 
-    },500);
+    }, 500);
 
-},3000);
-
+}, 3000);
 
 // =======================
 // ข้อความอวยพร
@@ -54,7 +59,6 @@ Happy Birthday 🎂🎁🎈`;
 
 let played = false;
 
-
 // =======================
 // กดปุ่ม
 // =======================
@@ -70,7 +74,7 @@ function startBirthday(){
     music.volume = 0.7;
 
     music.play().catch(err=>{
-        console.log(err);
+        console.log("เล่นเพลงไม่ได้", err);
     });
 
     // พลุ
@@ -80,7 +84,6 @@ function startBirthday(){
     const text = document.getElementById("text");
 
     text.style.display = "block";
-
     text.innerHTML = "";
 
     let i = 0;
@@ -107,19 +110,10 @@ function startBirthday(){
 
 }
 
-
 // =======================
 // เอฟเฟกต์ลอย
 // =======================
-const icons=[
-"🎈",
-"🎂",
-"🎉",
-"🎁",
-"✨",
-"💖",
-"🥳"
-];
+const icons=["🎈","🎂","🎉","🎁","✨","💖","🥳"];
 
 function createFloat(){
 
@@ -145,14 +139,12 @@ function createFloat(){
 
 setInterval(createFloat,250);
 
-
 // =======================
 // พลุ
 // =======================
 function fireworks(){
 
     const duration = 10000;
-
     const end = Date.now() + duration;
 
     (function frame(){
@@ -182,12 +174,11 @@ function fireworks(){
         });
 
         if(Date.now() < end){
-
             requestAnimationFrame(frame);
-
         }
 
     })();
 
 }
+
 </script>
