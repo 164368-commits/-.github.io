@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>❤️ น้องรัด ❤️</title>
+<title>🎂 Happy Birthday 🎂</title>
 
 <style>
 *{
@@ -14,7 +14,7 @@
 }
 
 body{
-    background:linear-gradient(135deg,#ffb6d9,#ffd6e8,#fff0f5);
+    background:linear-gradient(135deg,#ffd1dc,#ffe4b5,#fffacd);
     display:flex;
     justify-content:center;
     align-items:center;
@@ -43,6 +43,7 @@ body{
 h2{
     margin:15px 0;
     color:#ff1493;
+    font-size:30px;
 }
 
 button{
@@ -65,15 +66,13 @@ button:hover{
     display:none;
     margin-top:20px;
     color:#d81b60;
-    font-size:22px;
-    font-weight:bold;
+    font-size:20px;
+    line-height:1.8;
 }
 
-/* หัวใจลอย */
-.heart{
+.float{
     position:fixed;
-    color:#ff4d88;
-    font-size:25px;
+    font-size:30px;
     animation:float 6s linear infinite;
     pointer-events:none;
 }
@@ -97,15 +96,21 @@ button:hover{
 
 <img id="slide" src="751035036_1719591268958655_8370233642973154637_n.jpg">
 
-<h2>❤️ น้องรัด ❤️</h2>
+<h2>🎂 Happy Birthday 🎂</h2>
 
-<button onclick="startLove()">
-💖 กดตรงนี้ 💖
+<button onclick="startBirthday()">
+🎁 เปิดคำอวยพร 🎁
 </button>
 
 <div id="text">
-รักที่สุดเลยนะ ❤️<br>
- 🥰
+🎉 สุขสันต์วันเกิดนะ 🎉<br><br>
+
+ขอให้มีความสุขมาก ๆ<br>
+สุขภาพแข็งแรง สมหวังในทุกเรื่อง 💖<br>
+ขอให้รอยยิ้มอยู่กับเธอทุกวัน 😊<br>
+คิดสิ่งใดก็ขอให้สมปรารถนา<br><br>
+
+🎂 Happy Birthday 🎂
 </div>
 
 <audio id="music">
@@ -116,8 +121,8 @@ button:hover{
 
 <script>
 
-// รูปภาพ 5 รูป
-const images = [
+// รูปภาพ
+const images=[
 "751035036_1719591268958655_8370233642973154637_n.jpg",
 "752550920_1018062320995628_3834456038027307601_n.jpg",
 "754015096_2926203654416033_1176873942568398260_n.jpg",
@@ -125,62 +130,57 @@ const images = [
 "751134574_1477406654429882_498575148599167075_n.jpg"
 ];
 
-let index = 0;
+let index=0;
 
-// เปลี่ยนรูปทุก 3 วินาที
-setInterval(() => {
+// สไลด์รูป
+setInterval(()=>{
+    const img=document.getElementById("slide");
+    img.style.opacity=0;
 
-    const img = document.getElementById("slide");
-
-    img.style.opacity = 0;
-
-    setTimeout(() => {
-
-        index = (index + 1) % images.length;
-
-        img.src = images[index];
-
-        img.style.opacity = 1;
-
+    setTimeout(()=>{
+        index=(index+1)%images.length;
+        img.src=images[index];
+        img.style.opacity=1;
     },400);
 
 },3000);
 
-// กดปุ่มเล่นเพลง
-function startLove(){
+// เล่นเพลง
+function startBirthday(){
 
-    const music = document.getElementById("music");
+    document.getElementById("music").play();
 
-    music.play();
-
-    document.getElementById("text").style.display = "block";
+    document.getElementById("text").style.display="block";
 
 }
 
-// หัวใจลอย
-function createHeart(){
+// เอฟเฟกต์ลอย
+const icons=["🎈","🎂","🎁","🎉","✨","💖"];
 
-    const heart = document.createElement("div");
+function createFloat(){
 
-    heart.className = "heart";
+    const item=document.createElement("div");
 
-    heart.innerHTML = "❤️";
+    item.className="float";
 
-    heart.style.left = Math.random()*100 + "vw";
+    item.innerHTML=icons[Math.floor(Math.random()*icons.length)];
 
-    heart.style.fontSize = (20 + Math.random()*20) + "px";
+    item.style.left=Math.random()*100+"vw";
 
-    document.body.appendChild(heart);
+    item.style.fontSize=(25+Math.random()*20)+"px";
+
+    document.body.appendChild(item);
 
     setTimeout(()=>{
-        heart.remove();
+        item.remove();
     },6000);
 
 }
 
-setInterval(createHeart,300);
+setInterval(createFloat,300);
 
 </script>
 
 </body>
 </html>
+
