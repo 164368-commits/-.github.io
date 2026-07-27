@@ -19,7 +19,6 @@ let index = 0;
 
 
 
-// ปุ่มเริ่มเซอร์ไพรส์
 document.getElementById("startBtn").onclick = function(){
 
     let count = 3;
@@ -31,7 +30,7 @@ document.getElementById("startBtn").onclick = function(){
     this.style.display = "none";
 
 
-    // แสดงเลข 3
+    // เริ่มเลข 3
     countdown.innerHTML = count;
 
 
@@ -50,6 +49,7 @@ document.getElementById("startBtn").onclick = function(){
 
 
             clearInterval(timer);
+
 
 
             setTimeout(()=>{
@@ -89,7 +89,7 @@ document.getElementById("startBtn").onclick = function(){
 
 
 
-                // สร้างหัวใจ
+                // หัวใจลอย
                 setInterval(createHeart,250);
 
 
@@ -103,42 +103,42 @@ document.getElementById("startBtn").onclick = function(){
     },1000);
 
 
-};
+}
 
 
 
-// หัวใจลอย
+
 function createHeart(){
 
 
-    const heart = document.createElement("div");
+const heart = document.createElement("div");
 
 
-    heart.className="heart";
+heart.className="heart";
 
 
-    heart.innerHTML="💖";
+heart.innerHTML="💖";
 
 
-    heart.style.left=Math.random()*100+"vw";
+heart.style.left=Math.random()*100+"vw";
 
 
-    heart.style.fontSize=(20+Math.random()*35)+"px";
+heart.style.fontSize=(20+Math.random()*35)+"px";
 
 
-    heart.style.animationDuration=(4+Math.random()*5)+"s";
-
-
-
-    document.body.appendChild(heart);
+heart.style.animationDuration=(4+Math.random()*5)+"s";
 
 
 
-    setTimeout(()=>{
+document.body.appendChild(heart);
 
-        heart.remove();
 
-    },9000);
+
+setTimeout(()=>{
+
+heart.remove();
+
+},9000);
 
 
 }
