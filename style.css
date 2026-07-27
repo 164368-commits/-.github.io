@@ -1,9 +1,12 @@
 /* นับถอยหลัง 3 วิ */
 #countdown{
+    position:absolute;
+    top:55%;
+    left:50%;
+    transform:translate(-50%,-50%);
     font-size:90px;
     font-weight:bold;
     color:white;
-    margin-top:30px;
     text-shadow:
         0 0 10px #ff1493,
         0 0 30px #ff69b4,
@@ -13,21 +16,21 @@
 }
 
 
-/* เลขเด้งตอนนับถอยหลัง */
+/* เลขเด้ง */
 @keyframes countZoom{
 
     0%{
-        transform:scale(1);
+        transform:translate(-50%,-50%) scale(1);
         opacity:1;
     }
 
     50%{
-        transform:scale(1.4);
+        transform:translate(-50%,-50%) scale(1.4);
         opacity:.8;
     }
 
     100%{
-        transform:scale(1);
+        transform:translate(-50%,-50%) scale(1);
         opacity:1;
     }
 
@@ -79,8 +82,7 @@
 }
 
 
-
-/* เอฟเฟกต์ตอนเปิดการ์ด */
+/* เอฟเฟกต์เปิดการ์ด */
 .card.show{
 
     animation:cardOpen 1s ease;
@@ -91,20 +93,13 @@
 @keyframes cardOpen{
 
     from{
-
         opacity:0;
-
         transform:scale(.5) rotate(-10deg);
-
     }
 
-
     to{
-
         opacity:1;
-
         transform:scale(1) rotate(0deg);
-
     }
 
 }
