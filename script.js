@@ -23,16 +23,16 @@ document.getElementById("startBtn").onclick = function(){
 
     let count = 3;
 
-    let countdown = document.getElementById("countdown");
+    const countdown = document.getElementById("countdown");
 
 
     // ซ่อนปุ่ม
     this.style.display = "none";
 
 
-    // เริ่มเลข 3
+    // แสดงเลขถอยหลัง
+    countdown.style.display = "block";
     countdown.innerHTML = count;
-
 
 
     let timer = setInterval(()=>{
@@ -41,21 +41,23 @@ document.getElementById("startBtn").onclick = function(){
         count--;
 
 
-        countdown.innerHTML = count;
+        if(count > 0){
 
+            countdown.innerHTML = count;
 
-
-        if(count === 0){
+        }else{
 
 
             clearInterval(timer);
 
 
+            countdown.innerHTML = "🎉";
+
 
             setTimeout(()=>{
 
 
-                // ปิดหน้านับถอยหลัง
+                // ปิดหน้าจอเริ่ม
                 document.getElementById("startScreen").style.display="none";
 
 
@@ -68,7 +70,7 @@ document.getElementById("startBtn").onclick = function(){
 
 
 
-                // เปลี่ยนรูปทุก 5 วินาที
+                // เปลี่ยนรูปทุก 5 วิ
                 setInterval(()=>{
 
 
@@ -94,7 +96,7 @@ document.getElementById("startBtn").onclick = function(){
 
 
 
-            },500);
+            },800);
 
 
         }
@@ -104,7 +106,6 @@ document.getElementById("startBtn").onclick = function(){
 
 
 }
-
 
 
 
