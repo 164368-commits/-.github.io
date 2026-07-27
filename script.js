@@ -1,160 +1,131 @@
-// =======================
-// รูปภาพ
-// =======================
+const music = document.getElementById("music");
+
 const images = [
-    "751035036_1719591268958655_8370233642973154637_n.jpg",
-    "752550920_1018062320995628_3834456038027307601_n.jpg",
-    "754015096_2926203654416033_1176873942568398260_n.jpg",
-    "753105080_1500194058456130_231933915178450339_n.jpg",
-    "751134574_1477406654429882_498575148599167075_n.jpg"
+
+"751035036_1719591268958655_8370233642973154637_n.jpg",
+
+"752550920_1018062320995628_3834456038027307601_n.jpg",
+
+"754015096_2926203654416033_1176873942568398260_n.jpg",
+
+"753105080_1500194058456130_231933915178450339_n.jpg",
+
+"751134574_1477406654429882_498575148599167075_n.jpg"
+
 ];
 
+
 let index = 0;
-const slide = document.getElementById("slide");
 
-// สไลด์รูป
-setInterval(() => {
-    slide.style.opacity = 0;
 
-    setTimeout(() => {
-        index = (index + 1) % images.length;
-        slide.src = images[index];
-        slide.style.opacity = 1;
-    }, 500);
+// ปุ่มเริ่มเซอร์ไพรส์
+document.getElementById("startBtn").onclick = function(){
 
-}, 3000);
+    let count = 3;
 
-// =======================
-// ข้อความอวยพร
-// =======================
-const message = `🎉 สุขสันต์วันเกิดนะ 🎂
+    let countdown = document.getElementById("countdown");
 
-ขอให้มีความสุขมาก ๆ 💖
+    this.style.display = "none";
 
-สุขภาพแข็งแรง
-สมหวังในทุกเรื่อง
+    countdown.innerHTML = count;
 
-ขอให้ยิ้มเยอะ ๆ 😊
-เจอแต่สิ่งดี ๆ
 
-คิดหวังสิ่งใด
-ขอให้สมหวังทุกประการ ✨
 
-🎂 Happy Birthday 🎂`;
+    let timer = setInterval(()=>{
 
-let played = false;
 
-// =======================
-// กดปุ่ม
-// =======================
-function startBirthday() {
+        count--;
 
-    if (played) return;
-    played = true;
+        countdown.innerHTML = count;
 
-    // เล่นเพลง
-    const music = document.getElementById("music");
 
-    music.volume = 0.7;
 
-    music.play().catch(error => {
-        console.log("เล่นเพลงไม่ได้", error);
-    });
+        if(count === 0){
 
-    // พลุ
-    fireworks();
 
-    // แสดงข้อความ
-    const text = document.getElementById("text");
-    text.style.display = "block";
-    text.innerHTML = "";
+            clearInterval(timer);
 
-    let i = 0;
 
-    function typing() {
+            // ซ่อนหน้ากดปุ่ม
+            document.getElementById("startScreen").style.display="none";
 
-        if (i < message.length) {
 
-            if (message[i] === "\n") {
-                text.innerHTML += "<br>";
-            } else {
-                text.innerHTML += message[i];
-            }
+            // แสดงการ์ด
+            document.getElementById("content").style.display="block";
 
-            i++;
-            setTimeout(typing, 45);
-        }
-    }
 
-    typing();
-}
+            // เล่นเพลง
+            music.play();
 
-// =======================
-// เอฟเฟกต์ลอย
-// =======================
-const icons = ["🎈","🎂","🎉","🎁","✨","💖","🥳"];
 
-function createFloat() {
 
-    const item = document.createElement("div");
+            // เปลี่ยนรูปทุก 5 วิ
+            setInterval(()=>{
 
-    item.className = "float";
-    item.innerHTML = icons[Math.floor(Math.random() * icons.length)];
 
-    item.style.left = Math.random() * 100 + "vw";
-    item.style.fontSize = (20 + Math.random() * 20) + "px";
-    item.style.animationDuration = (4 + Math.random() * 3) + "s";
+                index++;
 
-    document.body.appendChild(item);
 
-    setTimeout(() => {
-        item.remove();
-    }, 7000);
+                if(index >= images.length){
 
-}
+                    index = 0;
 
-setInterval(createFloat, 250);
+                }
 
-// =======================
-// พลุ
-// =======================
-function fireworks() {
 
-    if (typeof confetti !== "function") return;
+                document.getElementById("slide").src = images[index];
 
-    const duration = 10000;
-    const end = Date.now() + duration;
 
-    (function frame() {
+            },5000);
 
-        confetti({
-            particleCount: 10,
-            angle: 60,
-            spread: 70,
-            origin: { x: 0, y: 0.8 }
-        });
 
-        confetti({
-            particleCount: 10,
-            angle: 120,
-            spread: 70,
-            origin: { x: 1, y: 0.8 }
-        });
 
-        confetti({
-            particleCount: 18,
-            spread: 120,
-            startVelocity: 45,
-            origin: {
-                x: Math.random(),
-                y: Math.random() * 0.5
-            }
-        });
+            // สร้างหัวใจ
+            setInterval(createHeart,250);
 
-        if (Date.now() < end) {
-            requestAnimationFrame(frame);
+
         }
 
-    })();
+
+    },1000);
+
+
+};
+
+
+
+// สร้างหัวใจลอย
+function createHeart(){
+
+
+    const heart = document.createElement("div");
+
+
+    heart.className="float";
+
+
+    heart.innerHTML="💖";
+
+
+    heart.style.left=Math.random()*100+"vw";
+
+
+    heart.style.fontSize=(20+Math.random()*40)+"px";
+
+
+    heart.style.animationDuration=(4+Math.random()*5)+"s";
+
+
+
+    document.body.appendChild(heart);
+
+
+
+    setTimeout(()=>{
+
+        heart.remove();
+
+    },9000);
+
 
 }
